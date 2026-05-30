@@ -1,0 +1,16 @@
+services:
+  crafty:
+    container_name: crafty_container
+    image: registry.gitlab.com/crafty-controller/crafty-4:latest
+    restart: always
+    environment:
+      - TZ=America/Sao_Paulo # Ajuste para o seu fuso horário
+    ports:
+      - "8000:8000" # HTTP (Opcional, o painel costuma redirecionar para HTTPS)
+      - "8443:8443" # HTTPS (Esta é a porta principal do Painel Web)
+      - "8123:8123" # Porta padrão para o mapa do Dynmap (Opcional)
+      - "19132:19132/udp" # Necessário caso vá rodar servidores Bedrock
+      - "25500-25600:25500-25600" # Range de portas padrão para os servidores Minecraft que você for criar
+    volumes:
+      # Mapeamento do diretório local para persistência de dados
+      - ./crafty_data:/crafty
