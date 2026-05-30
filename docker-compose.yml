@@ -11,6 +11,10 @@ services:
       - "8123:8123" # Porta padrão para o mapa do Dynmap (Opcional)
       - "19132:19132/udp" # Necessário caso vá rodar servidores Bedrock
       - "25500-25600:25500-25600" # Range de portas padrão para os servidores Minecraft que você for criar
-    volumes:
-      # Mapeamento do diretório local para persistência de dados
-      - ./crafty_data:/crafty
+    
+volumes:
+      - ./crafty_data/backups:/crafty/backups
+      - ./crafty_data/logs:/crafty/logs
+      - ./crafty_data/servers:/crafty/servers
+      - ./crafty_data/config:/crafty/app/config
+      - ./crafty_data/import:/crafty/app/import
