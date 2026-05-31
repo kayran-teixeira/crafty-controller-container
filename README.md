@@ -1,5 +1,3 @@
-Claro! Segue um README.md mais organizado e profissional, baseado no seu `docker-compose.yml` e seguindo o estilo que você mostrou:
-
 # 🎮 Guia de Instalação e Execução: Crafty Controller 4 com Docker
 
 Este guia contém as instruções necessárias para instalar e executar o **Crafty Controller 4** utilizando Docker. O Crafty é um painel web completo para gerenciamento de servidores Minecraft Java e Bedrock, oferecendo criação, monitoramento, backups e administração centralizada dos seus servidores.
@@ -31,41 +29,10 @@ mkdir crafty
 cd crafty
 ```
 
-Dentro dela, crie o arquivo:
+Dentro dela, clone o repositório:
 
 ```text
-docker-compose.yml
-```
-
----
-
-# 🛠️ Configuração do Docker Compose
-
-Crie o arquivo `docker-compose.yml` com o conteúdo abaixo:
-
-```yaml
-services:
-  crafty:
-    container_name: crafty_container
-    image: registry.gitlab.com/crafty-controller/crafty-4:latest
-    restart: always
-
-    environment:
-      - TZ=America/Sao_Paulo
-
-    ports:
-      - "8000:8000"
-      - "8443:8443"
-      - "8123:8123"
-      - "19132:19132/udp"
-      - "25500-25600:25500-25600"
-
-    volumes:
-      - ./crafty_data/backups:/crafty/backups
-      - ./crafty_data/logs:/crafty/logs
-      - ./crafty_data/servers:/crafty/servers
-      - ./crafty_data/config:/crafty/app/config
-      - ./crafty_data/import:/crafty/app/import
+git clone link-repositorio
 ```
 
 ---
