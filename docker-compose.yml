@@ -4,15 +4,14 @@ services:
     image: registry.gitlab.com/crafty-controller/crafty-4:latest
     restart: always
     environment:
-      - TZ=America/Sao_Paulo # Ajuste para o seu fuso horário
+      - TZ=America/Sao_Paulo
     ports:
-      - "8000:8000" # HTTP (Opcional, o painel costuma redirecionar para HTTPS)
-      - "8443:8443" # HTTPS (Esta é a porta principal do Painel Web)
-      - "8123:8123" # Porta padrão para o mapa do Dynmap (Opcional)
-      - "19132:19132/udp" # Necessário caso vá rodar servidores Bedrock
-      - "25500-25600:25500-25600" # Range de portas padrão para os servidores Minecraft que você for criar
-    
-volumes:
+      - "8000:8000"
+      - "8443:8443"
+      - "8123:8123"
+      - "19132:19132/udp"
+      - "25500-25600:25500-25600"
+    volumes:
       - ./crafty_data/backups:/crafty/backups
       - ./crafty_data/logs:/crafty/logs
       - ./crafty_data/servers:/crafty/servers
