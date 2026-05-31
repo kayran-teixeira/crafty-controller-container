@@ -131,6 +131,8 @@ https://localhost:8443
 
 Faça login utilizando as credenciais obtidas anteriormente.
 
+> ⚠️ Caso as credenciais não sejam exibidas nos logs, consulte a seção **"Caso as Credenciais Não Apareçam nos Logs"** abaixo.
+
 ---
 
 # 🔌 Portas Utilizadas
@@ -242,3 +244,67 @@ crafty_data/
 para outro local seguro.
 
 ---
+
+## ❗ Caso as Credenciais Não Apareçam nos Logs
+
+Em algumas versões do Crafty Controller, as credenciais iniciais podem não ser exibidas nos logs do container.
+
+### Acessando o Container
+
+Entre no container em execução:
+
+```bash
+docker exec -it crafty_container bash
+```
+
+### Verificando as Credenciais Padrão
+
+Tente localizar os arquivos de configuração:
+
+```bash
+cat /crafty/app/config/default-creds.txt
+```
+
+ou
+
+```bash
+cat /crafty/app/config/users.json
+```
+
+> **Observação:** A localização dos arquivos pode variar entre versões do Crafty.
+
+### Redefinindo o Usuário Administrador
+
+Caso não consiga localizar as credenciais, é possível redefinir o administrador executando:
+
+```bash
+docker exec -it crafty_container bash
+```
+
+Em seguida:
+
+```bash
+python3 /crafty/app/main.py reset_admin
+```
+
+Após a redefinição, reinicie o container:
+
+```bash
+docker restart crafty_container
+```
+
+E consulte novamente os logs:
+
+```bash
+docker logs crafty_container --tail 100
+```
+
+### Última Alternativa
+
+Se ainda houver dificuldades para acessar o painel, verifique os arquivos presentes no diretório persistente:
+
+```text
+./crafty_data/config/
+```
+
+ou recrie completamente a configuração do Crafty (mantendo os backups dos servidores) removendo apenas os arquivos de configuração do painel e iniciando o container novamente.
